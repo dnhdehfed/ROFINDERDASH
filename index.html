@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roblox Bot Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="max-w-4xl mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6 text-center">Roblox Bot Dashboard</h1>
+        <div id="profiles" class="space-y-4"></div>
+    </div>
+
+    <script>
+        // Simulated data (you can edit this)
+        const users = [
+            {
+                discord: "xavier#1234",
+                robloxUsername: "CoolRobloxUser",
+                robloxId: 12345678,
+                joinLink: "https://www.roblox.com/games/123456789/MyGame"
+            },
+            {
+                discord: "anotheruser#5678",
+                robloxUsername: "EpicGamer",
+                robloxId: 87654321,
+                joinLink: null
+            }
+        ];
+
+        const container = document.getElementById("profiles");
+        users.forEach(user => {
+            const card = document.createElement("div");
+            card.className = "bg-white rounded-2xl shadow p-4 flex gap-4 items-center";
+
+            const avatar = document.createElement("img");
+            avatar.src = `https://www.roblox.com/headshot-thumbnail/image?userId=${user.robloxId}&width=100&height=100&format=png`;
+            avatar.alt = user.robloxUsername;
+            avatar.className = "rounded-xl w-20 h-20";
+
+            const info = document.createElement("div");
+            info.innerHTML = `
+                <h2 class="text-xl font-semibold">${user.robloxUsername}</h2>
+                <p>Discord: ${user.discord}</p>
+                ${user.joinLink ? `<p class="text-blue-600"><a href="${user.joinLink}" target="_blank">Join Link</a></p>` : "<p class='text-gray-400'>No join link</p>"}
+            `;
+
+            card.appendChild(avatar);
+            card.appendChild(info);
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>
